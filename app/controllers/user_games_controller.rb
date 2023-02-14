@@ -9,7 +9,7 @@ class UserGamesController < ApplicationController
     end
 
     def destroy
-        user_game = UserGame.find_by user_id: user_game_params.user_id, game_id: user_game_params.game_id
+        user_game = UserGame.find(params[:id])
         if user_game
             user_game.delete
             head :no_content

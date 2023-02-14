@@ -34,14 +34,11 @@ function GameDetailPage() {
 
     useEffect(() => {
         if (user){
-        const ownedTitlesArray = user.games.map(game => {
-            return game.title
+        const ownedTitlesArray = user.user_games.map(usergame => {
+            return usergame.game.title
         })
         setOwned(ownedTitlesArray.includes(game.title))}
     }, [user])
-
-    console.log(game)
-
     
     const handleBuy = () => {
         if (user && !owned) {

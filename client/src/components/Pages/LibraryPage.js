@@ -29,7 +29,13 @@ function LibraryPage() {
       }, []);
 
     const handleDelete = (e) => {
-        fetch('/user_games')
+        fetch(`/user_games/${e.target.id}`, {
+            method: 'DELETE'
+        }).then(() => {
+            fetch('/me')
+            .then(r => r.json())
+            .then(setUser)
+        })
     }
 
     return (
@@ -43,20 +49,20 @@ function LibraryPage() {
             <PageTitle>Library</PageTitle>
             {doneLoading &&
             <SCardContainer>
-                {user.games.map(game => (
-                    <SGameCard key={game.id}>
-                        <SGameLabel key={game.title}>{game.title}</SGameLabel>
+                {user.user_games.map(usergame => (
+                    <SGameCard key={usergame.game.id}>
+                        <SGameLabel key={usergame.game.title}>{usergame.game.title}</SGameLabel>
                         <Divider/>
-                        <img src={game.image} alt={game.title}></img>
+                        <img src={usergame.game.image} alt={usergame.game.title}></img>
                         <Divider/>
                         <UtilityContainer>
                             <PlayButton>
                                 <SLinkIcon><BsPlay/></SLinkIcon>
                                 <SLinkLabel>Play</SLinkLabel>
                             </PlayButton>
-                            <DeleteButton game={game.id} onClick={handleDelete}>
+                            <DeleteButton  onClick={handleDelete}>
                                 <SLinkIcon><AiOutlineDelete style={{fontSize: "35px"}}/></SLinkIcon>
-                                <SLinkLabel>Delete</SLinkLabel>
+                                <SLinkLabel id={usergame.id}>Delete</SLinkLabel>
                             </DeleteButton>
                         </UtilityContainer>
                     </SGameCard>

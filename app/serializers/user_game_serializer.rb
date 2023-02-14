@@ -1,3 +1,3 @@
 class UserGameSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :user_id, :game_id, :game
 end
