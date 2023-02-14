@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
-  resources :games
-  get '/hello', to: 'application#hello_world'
+  resources :wallets
+  resources :user_games
+  resources :users
+  resources :games, only: [:index, :show]
+
+  post '/login', to: 'sessions#create'
+  get '/me', to: 'users#show'
+  post '/signup', to: 'users#create'
+  delete 'logout', to: 'sessions#destroy'
+
 end
