@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :wallets
-  resources :user_games
+  resources :user_games, only: [:index, :create, :destroy]
   resources :users
   resources :games, only: [:index, :show]
 

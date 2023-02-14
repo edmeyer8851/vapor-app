@@ -8,16 +8,16 @@ import GameDetailPage from '../Pages/GameDetailPage'
 import SignInPage from '../Pages/SignInPage'
 import SignUpPage from '../Pages/SignUpPage'
 
-function Routes({theme, setUser}) {
+function Routes() {
     return (
         <Switch>
             <Route exact path='/' element={<StorePage />}/>
             <Route exact path='/library' element={<LibraryPage />}/>
             <Route exact path='/profile' element={<ProfilePage />}/>
             <Route exact path='/wallet' element={<WalletPage />}/>
-            <Route exact path='/gameDetail' element={<GameDetailPage />}/>
-            <Route exact path='/signIn' element={<SignInPage setUser={setUser} />} />
-            <Route exact path='/signUp' element={<SignUpPage setUser={setUser} />} />
+            <Route exact path='/games/:id' element={<GameDetailPage />}/>
+            <Route exact path='/signIn' element={<SignInPage />} />
+            <Route exact path='/signUp' element={<SignUpPage />} />
         </Switch>
     )
 }

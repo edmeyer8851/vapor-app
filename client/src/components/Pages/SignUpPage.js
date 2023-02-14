@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import Button from '../../styles/Button.js'
@@ -7,9 +7,12 @@ import Label from '../../styles/Label.js'
 import Input from '../../styles/Input.js'
 import Error from '../../styles/Error.js'
 import { logoMainPNG } from '../../assets'
+import { UserContext } from '../../context/user.js'
 
-function SignUpPage({setUser}) {
+function SignUpPage() {
     let navigate = useNavigate()
+
+    const [user, setUser] = useContext(UserContext)
 
     const [email, setEmail] = useState("")
     const [username, setUsername] = useState("")
@@ -35,10 +38,14 @@ function SignUpPage({setUser}) {
       }
     
     return (
-        <Wrapper>
+      <Wrapper>
+        <Divider />
+        <Divider />
+        <Divider />
+        <Divider />
+        <Divider />
         <SLogo>
-
-        <img src={logoMainPNG} alt='logo'/>
+          <img src={logoMainPNG} alt='logo'/>
         </SLogo>
         <Divider />
         <form onSubmit={handleSubmit}>

@@ -4,10 +4,12 @@ import { v } from '../../styles/variables'
 
 export const SSidebar = styled.div`
     width: ${v.sideBarWidth};
+    top: 0;
+    left: 0;
     background: ${({ theme }) => theme.bg};
     height: 100vh;
     padding: ${v.lgSpacing};
-    position: relative;
+    position: fixed;
 `
 
 export const SLogo = styled.div`

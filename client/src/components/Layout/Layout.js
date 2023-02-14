@@ -2,10 +2,10 @@ import React from 'react'
 import Sidebar from '../Sidebar/Sidebar'
 import { SLayout, SMain } from './styles'
 
-function Layout({children, theme, user, setUser}) {
+function Layout({children, theme}) {
     return (
         <SLayout>
-            <Sidebar theme={theme} user={user} setUser={setUser}/>
+            <Sidebar theme={theme}/>
             <SMain>{children}</SMain>
         </SLayout>
     )

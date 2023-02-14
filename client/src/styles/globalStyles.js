@@ -7,7 +7,9 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     main {
-        width: 100%
+        width: 100%;
+        left: 160px;
+        position: relative;
     }
 
     body {

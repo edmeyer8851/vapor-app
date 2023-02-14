@@ -13,7 +13,7 @@ def games_data
             title: game["title"],
             description: game["short_description"],
             genre: game["genre"],
-            price: rand(5..60),
+            price: rand(1..10),
             developer: game["developer"],
             release_date: game["release_date"],
             image: game["thumbnail"]

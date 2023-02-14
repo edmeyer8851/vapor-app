@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { logoBlackPNG, logoWhitePNG } from '../../assets'
 import { SHeader, SLink, SLinkContainer, SLinkIcon, SLinkLabel, SLogo, SSidebar } from './styles'
@@ -9,10 +9,13 @@ import { BiLibrary } from 'react-icons/bi'
 import { CgProfile } from 'react-icons/cg'
 import { SlWallet } from 'react-icons/sl'
 import { IoIosLogIn, IoIosLogOut } from 'react-icons/io'
+import { UserContext } from '../../context/user'
 
-function Sidebar({ theme, user, setUser }) {
+function Sidebar({ theme }) {
   
   let navigate = useNavigate()
+
+  const [user, setUser] = useContext(UserContext)
 
   const handleSignOut = () => {
     fetch("/logout", { method: "DELETE" }).then((r) => {
