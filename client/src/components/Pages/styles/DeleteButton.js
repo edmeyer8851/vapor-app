@@ -25,7 +25,7 @@ function DeleteButton({ variant = "fill", color = "primary", ...props }) {
 const ButtonBase = styled.button`
   cursor: pointer;
   display: flex;
-  font-size: 24px;
+  font-size: 20px;
   width: 160px;
   margin-left: 35px;
   margin-bottom: 10px;

@@ -64,3 +64,12 @@ export const SHeader = styled.span`
     margin-left: 10px;
     border-radius: ${v.borderRadius};
 `
+
+export const SLinkNotification = styled.div`
+    font-size: 14px;
+    padding: calc(${v.smSpacing} / 2) ${v.smSpacing};
+    border-radius: calc(${v.borderRadius} / 2);
+    background: ${({theme}) => theme.primary};
+    color: white;
+    margin-right: ${v.mdSpacing}
+`

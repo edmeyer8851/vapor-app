@@ -63,8 +63,8 @@ function LibraryPage() {
                                 <SLinkIcon><BsPlay/></SLinkIcon>
                                 <SLinkLabel>Play</SLinkLabel>
                             </PlayButton>
-                            <DeleteButton  onClick={handleDelete}>
-                                <SLinkIcon><AiOutlineDelete style={{fontSize: "35px"}}/></SLinkIcon>
+                            <DeleteButton id={usergame.id} onClick={handleDelete}>
+                                <SLinkIcon><AiOutlineDelete style={{fontSize: "20px"}}/></SLinkIcon>
                                 <SLinkLabel id={usergame.id}>Uninstall</SLinkLabel>
                             </DeleteButton>
                         </UtilityContainer>
@@ -88,15 +88,18 @@ const SCardContainer = styled.div`
 
 export const SLinkIcon = styled.div`
     display: flex;
+    padding-top: 4px;
+    padding-right: 4px;
+    
 
     svg {
-        font-size: 40px
+        font-size: 24px
     }
 `
 
 export const SLinkLabel = styled.span`
     display: block;
-    padding-top: 4px;
+    padding-top: 3px;
 `
 
 export const PageTitle = styled.h1`
@@ -134,6 +137,7 @@ const SGameLabel = styled.h1`
     width: 375px;
     height: 20px;
     margin-left: -6px;
+    margin-top:15px;
     text-align: center;
     font-size: 24px;
     border-radius: 6px;

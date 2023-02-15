@@ -52,6 +52,12 @@ function GameDetailPage() {
                 game_id: game.id,
                 }),
             }).then(setOwned(true))
+            .then(() => {
+                fetch('/me')
+                .then(r => r.json())
+                .then(setUser)
+                .then(navigate('/'))
+            })
         } else {
             if (user){
                 setErrors(["You already own this game."])

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { logoBlackPNG, logoWhitePNG } from '../../assets'
-import { SHeader, SLink, SLinkContainer, SLinkIcon, SLinkLabel, SLogo, SSidebar } from './styles'
+import { SHeader, SLink, SLinkContainer, SLinkIcon, SLinkLabel, SLinkNotification, SLogo, SSidebar } from './styles'
 
 //icons
 import { MdOutlineLocalGroceryStore } from 'react-icons/md'
@@ -16,6 +16,8 @@ function Sidebar({ theme }) {
   let navigate = useNavigate()
 
   const [user, setUser] = useContext(UserContext)
+  let numGames = 0
+  if (user) numGames = user.user_games.length
 
   const handleSignOut = () => {
     fetch("/logout", { method: "DELETE" }).then((r) => {
@@ -72,6 +74,7 @@ function Sidebar({ theme }) {
                 <SLink to={to}>
                     <SLinkIcon>{icon}</SLinkIcon>
                     <SLinkLabel>{label}</SLinkLabel>
+                    {label == "Library" && numGames > 0 && <SLinkNotification>{numGames}</SLinkNotification>}
                 </SLink>
             </SLinkContainer>
             ))}

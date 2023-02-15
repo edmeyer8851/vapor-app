@@ -25,7 +25,7 @@ function PlayButton({ variant = "fill", color = "primary", ...props }) {
 const ButtonBase = styled.button`
   cursor: pointer;
   display: flex;
-  font-size: 24px;
+  font-size: 20px;
   width: 120px;
   margin-left: 25px;
   margin-bottom: 10px;
