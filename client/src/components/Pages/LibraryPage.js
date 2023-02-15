@@ -9,6 +9,7 @@ import DeleteButton from './styles/DeleteButton'
 import PlayButton from './styles/PlayButton'
 import { BsPlay } from 'react-icons/bs'
 import { AiOutlineDelete } from 'react-icons/ai'
+import Tilt from 'react-parallax-tilt';
 
 function LibraryPage() {
 
@@ -53,7 +54,9 @@ function LibraryPage() {
                     <SGameCard key={usergame.game.id}>
                         <SGameLabel key={usergame.game.title}>{usergame.game.title}</SGameLabel>
                         <Divider/>
-                        <img src={usergame.game.image} alt={usergame.game.title}></img>
+                        <Tilt style={{width: '365px'}} glareEnable={true} glarePosition="all" glareBorderRadius="24px" scale={1.05}>
+                            <img src={usergame.game.image} alt={usergame.game.title}></img>
+                        </Tilt>
                         <Divider/>
                         <UtilityContainer>
                             <PlayButton>
