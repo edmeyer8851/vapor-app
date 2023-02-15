@@ -33,7 +33,7 @@ function GameDetailPage() {
     }, [])
 
     useEffect(() => {
-        if (user){
+        if (user && user.hasOwnProperty('user_games')){
         const ownedTitlesArray = user.user_games.map(usergame => {
             return usergame.game.title
         })

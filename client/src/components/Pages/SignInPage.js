@@ -28,7 +28,7 @@ function SignInPage() {
           body: JSON.stringify({ username, password }),
         }).then((r) => {
           if (r.ok) {
-            r.json().then((user) => setUser(user)).then(navigate('/'));
+            r.json().then((user) => setUser(user)).then(navigate('/'))
           } else {
             r.json().then((err) => setErrors(err.errors));
           }

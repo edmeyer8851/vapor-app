@@ -17,11 +17,11 @@ function Sidebar({ theme }) {
 
   const [user, setUser] = useContext(UserContext)
   let numGames = 0
-  if (user) numGames = user.user_games.length
+  if ( user && user.hasOwnProperty('user_games')) {numGames = user.user_games.length}
 
   const handleSignOut = () => {
     fetch("/logout", { method: "DELETE" }).then((r) => {
-      if (r.ok) {
+      if (r.ok) { 
         setUser(null);
       }
     });

@@ -3,18 +3,30 @@ import styled from 'styled-components'
 import { logoLargePNG } from '../../assets'
 import Tilt from 'react-parallax-tilt';
 import { useNavigate } from 'react-router-dom';
+import FormField from '../../styles/FormField.js'
+import Label from '../../styles/Label.js'
+import Input from '../../styles/Input.js'
 
 function StorePage() {
 
     const navigate = useNavigate()
 
     const [games, setGames] = useState([])
+    const [search, setSearch] = useState('')
     
     useEffect(() => {
         fetch('/games')
         .then(r => r.json())
         .then(setGames)
     }, [])
+
+    let gamesToDisplay = games
+
+    if (search != '') {
+        gamesToDisplay = games.filter((game) => 
+            game.title.toLowerCase().includes(search.toLowerCase())
+        )
+    }
     
     return (
         <Wrapper>
@@ -23,8 +35,21 @@ function StorePage() {
             </SLogo>
             <Divider/>
             <SHeader>Charging money for free-to-play games since 2023</SHeader>
+            <Divider/>
+            <form>
+                <FormField>
+                    <Label htmlFor="search">Search</Label>
+                    <Input
+                    type="text"
+                    id="search"
+                    autoComplete="off"
+                    value={search}
+                    onChange={e => setSearch(e.target.value)}
+                    />
+                </FormField>
+            </form>
             <SCardContainer>
-                {games.map(game => (
+                {gamesToDisplay.map(game => (
                     <Tilt key={game.id} scale={1.05} transitionSpeed={2500}>
                         <SGameCard key={game.id} onClick={() => navigate(`/games/${game.id}`)}>
                             <SGameLabel key={game.title}>{game.title}</SGameLabel>

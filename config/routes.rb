@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :wallets
   resources :user_games, only: [:index, :create, :destroy]
-  resources :users
+  resources :users, only: [:update, :destroy]
   resources :games, only: [:index, :show]
 
   post '/login', to: 'sessions#create'

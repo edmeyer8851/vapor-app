@@ -44,7 +44,7 @@ function LibraryPage() {
         <BackButton onClick={() => navigate('/')}>{"< Back"}</BackButton>
         <Wrapper>
             <SLogo>
-                <img src={logoLargePNG} alt='logo'/>
+                    <img src={logoLargePNG} alt='logo'/>
             </SLogo>
             <Divider/>
             <PageTitle>Library</PageTitle>
