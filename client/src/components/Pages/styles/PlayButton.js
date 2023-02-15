@@ -27,7 +27,8 @@ const ButtonBase = styled.button`
   display: flex;
   font-size: 24px;
   width: 120px;
-  margin-left: 35px;
+  margin-left: 25px;
+  margin-bottom: 10px;
   border: 1px solid transparent;
   border-radius: 6px;
   padding: 8px 16px;

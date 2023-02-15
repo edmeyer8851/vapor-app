@@ -65,7 +65,7 @@ function LibraryPage() {
                             </PlayButton>
                             <DeleteButton  onClick={handleDelete}>
                                 <SLinkIcon><AiOutlineDelete style={{fontSize: "35px"}}/></SLinkIcon>
-                                <SLinkLabel id={usergame.id}>Delete</SLinkLabel>
+                                <SLinkLabel id={usergame.id}>Uninstall</SLinkLabel>
                             </DeleteButton>
                         </UtilityContainer>
                     </SGameCard>
@@ -133,22 +133,11 @@ const SGameLabel = styled.h1`
     display: block;
     width: 375px;
     height: 20px;
+    margin-left: -6px;
     text-align: center;
     font-size: 24px;
     border-radius: 6px;
     padding-bottom: 30px;
-`
-
-const SGamePrice = styled.h1`
-    background: rgb(30,30,30);
-    display: inline;
-    width: 100px;
-    height: 20px;
-    text-align: center;
-    margin-left: 125px;
-    font-size: 20px;
-    border-radius: 6px;
-    padding-bottom: 25px;
 `
 
 const UtilityContainer = styled.div`

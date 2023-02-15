@@ -26,8 +26,9 @@ const ButtonBase = styled.button`
   cursor: pointer;
   display: flex;
   font-size: 24px;
-  width: 140px;
+  width: 160px;
   margin-left: 35px;
+  margin-bottom: 10px;
   border: 1px solid transparent;
   border-radius: 6px;
   padding: 8px 16px;
