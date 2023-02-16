@@ -7,8 +7,8 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     main {
-        width: 100%;
-        left: 160px;
+        width: calc(90vw);
+        left: 175px;
         position: relative;
     }
 

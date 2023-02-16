@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { logoLargePNG } from '../../assets'
 import Tilt from 'react-parallax-tilt';
@@ -6,19 +6,22 @@ import { useNavigate } from 'react-router-dom';
 import FormField from '../../styles/FormField.js'
 import Label from '../../styles/Label.js'
 import Input from '../../styles/Input.js'
+import { GamesContext } from '../../context/games'
 
 function StorePage() {
 
+    const [games, setGames] = useContext(GamesContext)
     const navigate = useNavigate()
 
-    const [games, setGames] = useState([])
+
+    // const [games, setGames] = useState([])
     const [search, setSearch] = useState('')
     
-    useEffect(() => {
-        fetch('/games')
-        .then(r => r.json())
-        .then(setGames)
-    }, [])
+    // useEffect(() => {
+    //     fetch('/games')
+    //     .then(r => r.json())
+    //     .then(setGames)
+    // }, [])
 
     let gamesToDisplay = games
 
