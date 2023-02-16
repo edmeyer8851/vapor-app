@@ -53,9 +53,7 @@ function GameDetailPage() {
                 })
             } else setErrors(["You do not have enough funds in your wallet. Visit the Wallet page to add more."])
         } else {
-            if (user){
-                setErrors(["You already own this game."])
-            } else { setErrors(["You cannot purchase games unless you're signed in."])}
+            setErrors(["You already own this game."])
         }
     }
 
@@ -77,7 +75,7 @@ function GameDetailPage() {
             <Divider/>
             <GameTitle>{game.title}</GameTitle>
             <GameDetails game={game}/>
-            {!user &&<BuyButton onClick={handleBuy}>Please sign in to purchase</BuyButton>}
+            {!user &&<BuyButton onClick={() => navigate('/signIn')} >Please sign in to purchase</BuyButton>}
             {user &&<BuyButton onClick={handleBuy}>{owned ? "Owned" : "Purchase"}</BuyButton>}
             <Divider />
             {errors.map((err) => (
