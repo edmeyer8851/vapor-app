@@ -16,9 +16,9 @@ function ProfilePage() {
     const [user, setUser] = useContext(UserContext)
 
     const [errors, setErrors] = useState([])
-    const [doneLoading, setDoneLoading] = useState(false)
+    const [doneLoading, setDoneLoading] = useState(true)
     const [editValue, setEditValue] = useState('')
-    const [confirmDelete, setConfirmDelete] = useState('false')
+    const [confirmDelete, setConfirmDelete] = useState(false)
     const [editing, setEditing] = useState({
         username: false,
         email: false,
@@ -27,18 +27,6 @@ function ProfilePage() {
     })
 
     let navigate = useNavigate()
-
-    useEffect(() => {
-        // auto-login
-        fetch("/me").then((r) => {
-          if (r.ok) {
-            r.json().then((user) => {
-              setUser(user)
-              setDoneLoading(true)
-            })
-          }
-        })
-    }, [])
 
     const editClick = (e) => {
         let keyToUpdate = e.currentTarget.id
@@ -88,6 +76,14 @@ function ProfilePage() {
             })
           )
     }
+
+    const deleteClick = () => {
+        setConfirmDelete(true)
+    }
+
+    const cancelClick = () => {
+        setConfirmDelete(false)
+    }
     
     return (
         <>
@@ -101,7 +97,7 @@ function ProfilePage() {
             <Divider/>
             <Divider/>
             <Divider/>
-            {doneLoading && <Container>
+            {user && <Container>
                 <InfoContainer>
                     <InfoLabel>Username</InfoLabel>
                     {editing.username ? <><form id="username" onSubmit={handleSubmit}>
@@ -177,7 +173,14 @@ function ProfilePage() {
                         <Error key={err}>{`Error saving update: ${err}`}</Error>
                     ))}
                 </FormField>
-                <DeleteProfileButton onClick={handleDelete}>Delete User Profile</DeleteProfileButton>
+                {!confirmDelete && <DeleteProfileButton onClick={deleteClick}>Delete User Profile</DeleteProfileButton>}
+                {confirmDelete && 
+                    <ConfirmDeleteContainer>
+                        <ConfirmDeleteLabel>Are you sure you want to delete your profile?</ConfirmDeleteLabel>
+                        <ConfirmYes onClick={handleDelete}>Yes</ConfirmYes>
+                        <ConfirmNo onClick={cancelClick}>No</ConfirmNo>
+                    </ConfirmDeleteContainer>
+                }
             </Container>
             }
         </Wrapper>
@@ -240,7 +243,58 @@ const Input = styled.input`
     :focus {
         outline: none
     }
-`;
+`
+
+const ConfirmDeleteContainer = styled.div`
+    display: flex;
+    background: rgb(50,50,50);
+    width: 700px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font-size: 18px;
+    padding: 8px 16px;
+    margin-bottom: 10px;
+    margin-left: 135px;
+`
+
+const ConfirmDeleteLabel = styled.span`
+    width: 600px;
+    margin: auto;
+`
+
+const ConfirmYes = styled.button`
+    cursor: pointer;
+    background: rgb(142, 0, 0);
+    display: flex;
+    font-size: 20px;
+    width: 100px;
+    margin-left: 70px;
+    border: 1px solid transparent;
+    border-radius: 24px 0px 0px 24px;
+    padding: 8px 16px;
+    padding-left: 35px;
+    text-decoration: none;
+
+    :hover {
+        background: rgb(152, 0, 0);
+    }
+`
+
+const ConfirmNo = styled.button`
+    cursor: pointer;
+    display: flex;
+    background: rgb(30,30,30);
+    font-size: 20px;
+    width: 100px;
+    border: 1px solid transparent;
+    border-radius: 0px 24px 24px 0px;
+    padding: 8px 16px;
+    text-decoration: none;
+
+    :hover {
+        background: rgb(35,35,35);
+    }
+`
 
 
 export default ProfilePage

@@ -16,29 +16,22 @@ function GameDetailPage() {
 
     const [game, setGame] = useState({})
     const [errors, setErrors] = useState([])
-    const [owned, setOwned] = useState(false)
+
+    let owned = false
 
     useEffect(() => {
-        
         fetch(`/games/${id}`)
         .then(r => r.json())
-        .then(setGame).then(() => {
-            fetch("/me").then((r) => {
-                if (r.ok) {
-                r.json().then((user) => {
-                    setUser(user)
-                });
-            }})
-        })
+        .then(setGame)
     }, [])
 
-    useEffect(() => {
-        if (user && user.hasOwnProperty('user_games')){
+    
+    if (user && user.hasOwnProperty('user_games')){
         const ownedTitlesArray = user.user_games.map(usergame => {
             return usergame.game.title
         })
-        setOwned(ownedTitlesArray.includes(game.title))}
-    }, [user])
+        owned = ownedTitlesArray.includes(game.title)
+    }
     
     const handleBuy = () => {
         if (user && !owned) {
@@ -51,12 +44,11 @@ function GameDetailPage() {
                 user_id: user.id,
                 game_id: game.id,
                 }),
-            }).then(setOwned(true))
+            }).then(owned=true)
             .then(() => {
                 fetch('/me')
                 .then(r => r.json())
                 .then(setUser)
-                .then(navigate('/'))
             })
         } else {
             if (user){

@@ -1,5 +1,18 @@
 class UserGamesController < ApplicationController
 
+    def index
+        usergames = UserGame.all
+        render json: usergames, status: :ok
+    end
+
+    def show
+        usergame = UserGame.find(params[:id])
+        render json: usergame
+        rescue ActiveRecord::RecordNotFound => invalid
+            errors_arr = invalid.record.errors.map{|key,value| "#{key}: #{value}"}
+            render json: { errors: errors_arr }, status: :unprocessable_entity
+    end
+    
     def create
         user_game = UserGame.create!(user_game_params)
         render json: user_game, status: :created

@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 const COLORS = {
   primary: {
-    "--main": "rgb(50,50,50",
+    "--main": "rgb(50,50,50)",
     "--accent": "white",
   },
   secondary: {
@@ -27,12 +27,11 @@ const ButtonBase = styled.button`
   display: flex;
   font-size: 20px;
   width: 200px;
-  margin-left: 640px;
-  margin-bottom: 10px;
   border: 1px solid transparent;
   border-radius: 6px;
   padding: 8px 16px;
   text-decoration: none;
+  margin: auto;
 `;
 
 const FillButton = styled(ButtonBase)`

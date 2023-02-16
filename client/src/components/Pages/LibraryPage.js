@@ -14,20 +14,7 @@ import Tilt from 'react-parallax-tilt';
 function LibraryPage() {
 
     const [user, setUser] = useContext(UserContext)
-    const [doneLoading, setDoneLoading] = useState(false)
     let navigate = useNavigate()
-
-    useEffect(() => {
-        // auto-login
-        fetch("/me").then((r) => {
-          if (r.ok) {
-            r.json().then((user) => {
-              setUser(user)
-              setDoneLoading(true)
-            });
-          }
-        });
-      }, []);
 
     const handleDelete = (e) => {
         fetch(`/user_games/${e.target.id}`, {
@@ -48,9 +35,9 @@ function LibraryPage() {
             </SLogo>
             <Divider/>
             <PageTitle>Library</PageTitle>
-            {doneLoading &&
+            
             <SCardContainer>
-                {user.user_games.map(usergame => (
+                {user && user.user_games.map(usergame => (
                     <SGameCard key={usergame.game.id}>
                         <SGameLabel key={usergame.game.title}>{usergame.game.title}</SGameLabel>
                         <Divider/>
@@ -70,7 +57,7 @@ function LibraryPage() {
                         </UtilityContainer>
                     </SGameCard>
                 ))}
-            </SCardContainer>}
+            </SCardContainer>
         </Wrapper>
         </>
     )

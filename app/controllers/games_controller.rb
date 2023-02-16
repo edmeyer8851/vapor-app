@@ -14,4 +14,17 @@ class GamesController < ApplicationController
         end
     end
 
+    def create
+        game = Game.create!(game_params)
+        render json: game, status: :created
+        rescue ActiveRecord::RecordInvalid => invalid
+            errors_arr = invalid.record.errors.map{|key,value| "#{key}: #{value}"}
+            render json: { errors: errors_arr }, status: :unprocessable_entity
+    end
+
+    private
+    def game_params
+        params.permit(:title, :price)
+    end
+
 end
