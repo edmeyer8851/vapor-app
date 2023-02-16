@@ -16,23 +16,25 @@ function AddFundsForm({setAddingFunds}) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        fetch(`/wallets/${user.id}`, {
-            method: 'PATCH',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({ last_transaction_amount: parseInt(amount) })
-        }).then(r => {
-            if (r.ok){
-                r.json().then(wallet => {
-                    setWallet(wallet)
-                    setErrors([])
-                    setAddingFunds(false)
-                })
-            } else{
-                r.json().then(err => {
-                    setErrors(err.errors)
-                })
-            }
-        })
+        if (amount > 0) {
+            fetch(`/wallets/${user.id}`, {
+                method: 'PATCH',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({ last_transaction_amount: parseInt(amount) })
+            }).then(r => {
+                if (r.ok){
+                    r.json().then(wallet => {
+                        setWallet(wallet)
+                        setErrors([])
+                        setAddingFunds(false)
+                    })
+                } else{
+                    r.json().then(err => {
+                        setErrors(err.errors)
+                    })
+                }
+            })
+        }
     }
     
     return (
