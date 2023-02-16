@@ -79,6 +79,7 @@ function GameDetailPage() {
             <GameDetails game={game}/>
             {!user &&<BuyButton onClick={handleBuy}>Please sign in to purchase</BuyButton>}
             {user &&<BuyButton onClick={handleBuy}>{owned ? "Owned" : "Purchase"}</BuyButton>}
+            <Divider />
             {errors.map((err) => (
               <Error key={err}>{err}</Error>
             ))}
