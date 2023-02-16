@@ -73,3 +73,12 @@ export const SLinkNotification = styled.div`
     color: white;
     margin-right: ${v.mdSpacing}
 `
+
+export const SLinkBalance = styled.div`
+    font-size: 18px;
+    padding: calc(${v.smSpacing} / 2) ${v.smSpacing};
+    border-radius: calc(${v.borderRadius} / 2);
+    /* background: rgb(50,50,50); */
+    color: inherit;
+    margin-right: ${v.mdSpacing}
+`

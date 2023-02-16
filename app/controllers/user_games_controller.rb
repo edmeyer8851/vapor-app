@@ -10,7 +10,7 @@ class UserGamesController < ApplicationController
         render json: usergame
         rescue ActiveRecord::RecordNotFound => invalid
             errors_arr = invalid.record.errors.map{|key,value| "#{key}: #{value}"}
-            render json: { errors: errors_arr }, status: :unprocessable_entity
+            render json: { errors: errors_arr }, status: :not_found
     end
     
     def create

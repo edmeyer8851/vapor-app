@@ -1,15 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { UserContext } from '../../context/user'
 import BackButton from './styles/BackButton'
 import Error from '../../styles/Error.js'
-import { Divider, SLogo, Wrapper } from './StorePage'
-import { logoLargePNG } from '../../assets'
+import { Divider, Wrapper } from './StorePage'
 import { PageTitle } from './LibraryPage'
 import { FiEdit2, FiCheckCircle } from 'react-icons/fi'
 import FormField from '../../styles/FormField'
 import DeleteProfileButton from './styles/DeleteProfileButton'
+import LargeLogo from '../Logos/LargeLogo'
 
 function ProfilePage() {
     
@@ -89,9 +89,7 @@ function ProfilePage() {
         <>
         <BackButton onClick={() => navigate('/')}>{"< Back"}</BackButton>
         <Wrapper>
-            <SLogo>
-                <img src={logoLargePNG} alt='logo'/>
-            </SLogo>
+            <LargeLogo />
             <Divider/>
             <PageTitle>Profile</PageTitle>
             <Divider/>
@@ -188,7 +186,7 @@ function ProfilePage() {
     )
 }
 
-const Container = styled.div`
+export const Container = styled.div`
     display: flex;
     flex-direction: column;
     
@@ -197,7 +195,7 @@ const Container = styled.div`
     color: white;}
 `
 
-const InfoContainer = styled.div`
+export const InfoContainer = styled.div`
     display: flex;
     position: relative;
     /* margin-left: 100px; */
@@ -205,7 +203,7 @@ const InfoContainer = styled.div`
     justify-content: center
 `
 
-const InfoLabel = styled.span`
+export const InfoLabel = styled.span`
     background: rgb(40,40,40);
     border-radius: 16px 0px 0px 16px;
     padding: 8px 8px;
@@ -215,7 +213,7 @@ const InfoLabel = styled.span`
     text-align: right;
 `
 
-const InfoValue = styled.span`
+export const InfoValue = styled.span`
     background: rgb(50,50,50);
     border-radius: 0px 16px 16px 0px;
     padding: 8px 8px;

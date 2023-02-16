@@ -5,17 +5,20 @@ const UserContext = createContext()
 const UserProvider = ({ children }) => {
 
     const [user, setUser] = useState(null)
-    const value = [user, setUser]
+    const [wallet, setWallet] = useState(null)
+    const value = [user, setUser, wallet, setWallet]
 
     useEffect(() => {
-        // auto-login
         fetch("/me").then((r) => {
           if (r.ok) {
             r.json().then((user) => {
               setUser(user)
+              fetch(`/wallets/${user.id}`)
+              .then(r => r.json())
+              .then(setWallet)
             });
           }
-        });
+        })
       }, []);
 
     return (

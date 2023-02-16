@@ -5,5 +5,5 @@ class User < ApplicationRecord
 
     has_many :user_games, dependent: :destroy
     has_many :games, through: :user_games
-    has_one :wallet
+    has_one :wallet, dependent: :destroy
 end

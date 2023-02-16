@@ -2,38 +2,11 @@ import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import Button from '../../styles/Button.js'
-import FormField from '../../styles/FormField.js'
-import Label from '../../styles/Label.js'
-import Input from '../../styles/Input.js'
-import Error from '../../styles/Error.js'
-import { logoMainPNG } from '../../assets'
-import { UserContext } from '../../context/user.js'
+import SmallLogo from '../Logos/SmallLogo.js'
+import SignInForm from './Forms/SignInForm.js'
 
 function SignInPage() {
     let navigate = useNavigate()
-
-    const [user, setUser] = useContext(UserContext)
-
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
-    const [errors, setErrors] = useState([]);
-    
-    function handleSubmit(e) {
-        e.preventDefault();
-        fetch("/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ username, password }),
-        }).then((r) => {
-          if (r.ok) {
-            r.json().then((user) => setUser(user)).then(navigate('/'))
-          } else {
-            r.json().then((err) => setErrors(err.errors));
-          }
-        })
-      }
 
     return (
       <Wrapper>
@@ -42,41 +15,9 @@ function SignInPage() {
         <Divider />
         <Divider />
         <Divider />
-        <SLogo>
-          <img src={logoMainPNG} alt='logo'/>
-        </SLogo>
+        <SmallLogo />
         <Divider />
-        <form onSubmit={handleSubmit}>
-          <FormField>
-            <Label htmlFor="username">Username</Label>
-            <Input
-              type="text"
-              id="username"
-              autoComplete="off"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </FormField>
-          <FormField>
-            <Label htmlFor="password">Password</Label>
-            <Input
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </FormField>
-          <FormField>
-            <Button variant="fill" color="primary" type="submit">Login
-            </Button>
-          </FormField>
-          <FormField>
-            {errors.map((err) => (
-              <Error key={err}>{err}</Error>
-            ))}
-          </FormField>
-        </form>
+        <SignInForm />
         <Divider />
         <Divider />
           <p>
@@ -93,17 +34,6 @@ const Wrapper = styled.section`
   max-width: 500px;
   margin: 40px auto;
   padding: 16px;
-`
-
-const SLogo = styled.div`
-    display: flex;
-    width: auto;
-    justify-content: center;
-    
-    img {
-        max-width: 100%;
-        height: auto;
-    }
 `
 
 const Divider = styled.hr`

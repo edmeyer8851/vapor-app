@@ -1,15 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { logoLargePNG } from '../../assets'
 import { UserContext } from '../../context/user'
-import { Divider, SLogo, Wrapper } from './StorePage'
+import { Divider, Wrapper } from './StorePage'
 import BackButton from './styles/BackButton'
-import DeleteButton from './styles/DeleteButton'
-import PlayButton from './styles/PlayButton'
-import { BsPlay } from 'react-icons/bs'
-import { AiOutlineDelete } from 'react-icons/ai'
-import Tilt from 'react-parallax-tilt';
+import LargeLogo from '../Logos/LargeLogo'
+import LibraryGameCard from './styles/LibraryGameCard'
 
 function LibraryPage() {
 
@@ -30,32 +26,12 @@ function LibraryPage() {
         <>
         <BackButton onClick={() => navigate('/')}>{"< Back"}</BackButton>
         <Wrapper>
-            <SLogo>
-                    <img src={logoLargePNG} alt='logo'/>
-            </SLogo>
+            <LargeLogo />
             <Divider/>
             <PageTitle>Library</PageTitle>
-            
             <SCardContainer>
                 {user && user.user_games.map(usergame => (
-                    <SGameCard key={usergame.game.id}>
-                        <SGameLabel key={usergame.game.title}>{usergame.game.title}</SGameLabel>
-                        <Divider/>
-                        <Tilt style={{width: '365px'}} glareEnable={true} glarePosition="all" glareBorderRadius="24px" scale={1.05}>
-                            <img src={usergame.game.image} alt={usergame.game.title}></img>
-                        </Tilt>
-                        <Divider/>
-                        <UtilityContainer>
-                            <PlayButton>
-                                <SLinkIcon><BsPlay/></SLinkIcon>
-                                <SLinkLabel>Play</SLinkLabel>
-                            </PlayButton>
-                            <DeleteButton id={usergame.id} onClick={handleDelete}>
-                                <SLinkIcon><AiOutlineDelete style={{fontSize: "20px"}}/></SLinkIcon>
-                                <SLinkLabel id={usergame.id}>Uninstall</SLinkLabel>
-                            </DeleteButton>
-                        </UtilityContainer>
-                    </SGameCard>
+                    <LibraryGameCard key={usergame.id} handleDelete={handleDelete} usergame={usergame}/>
                 ))}
             </SCardContainer>
         </Wrapper>
@@ -73,22 +49,6 @@ const SCardContainer = styled.div`
     row-gap: 50px;
 `
 
-export const SLinkIcon = styled.div`
-    display: flex;
-    padding-top: 4px;
-    padding-right: 4px;
-    
-
-    svg {
-        font-size: 24px
-    }
-`
-
-export const SLinkLabel = styled.span`
-    display: block;
-    padding-top: 3px;
-`
-
 export const PageTitle = styled.h1`
     background: rgb(45,45,45);
     max-width: 600px;
@@ -99,40 +59,6 @@ export const PageTitle = styled.h1`
     flex: 1;
     font-size: 36px;
     border-radius: 6px;
-`
-
-const SGameCard = styled.div`
-    background: rgb(17,17,17);
-    display: flex;
-    flex-direction: column;
-    padding-left: 17.5px;
-    height: 350px;
-    width: 400px;
-    border-radius: 24px;
-    justify-content: center;
-
-    img{
-        width: 365px;
-        height: 206px;
-        border-radius: 24px;
-    }
-`
-
-const SGameLabel = styled.h1`
-    background: rgb(30,30,30);
-    display: block;
-    width: 375px;
-    height: 20px;
-    margin-left: -6px;
-    margin-top:15px;
-    text-align: center;
-    font-size: 24px;
-    border-radius: 6px;
-    padding-bottom: 30px;
-`
-
-const UtilityContainer = styled.div`
-    display: flex;
 `
 
 export default LibraryPage

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { logoBlackPNG, logoWhitePNG } from '../../assets'
-import { SHeader, SLink, SLinkContainer, SLinkIcon, SLinkLabel, SLinkNotification, SLogo, SSidebar } from './styles'
+import { SHeader, SLink, SLinkBalance, SLinkContainer, SLinkIcon, SLinkLabel, SLinkNotification, SLogo, SSidebar } from './styles'
 
 //icons
 import { MdOutlineLocalGroceryStore } from 'react-icons/md'
@@ -15,7 +15,7 @@ function Sidebar({ theme }) {
   
   let navigate = useNavigate()
 
-  const [user, setUser] = useContext(UserContext)
+  const [user, setUser, wallet, setWallet] = useContext(UserContext)
   let numGames = 0
   if ( user && user.hasOwnProperty('user_games')) {numGames = user.user_games.length}
 
@@ -23,6 +23,7 @@ function Sidebar({ theme }) {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) { 
         setUser(null);
+        setWallet(null)
       }
     });
   }
@@ -75,6 +76,7 @@ function Sidebar({ theme }) {
                     <SLinkIcon>{icon}</SLinkIcon>
                     <SLinkLabel>{label}</SLinkLabel>
                     {label == "Library" && numGames > 0 && <SLinkNotification>{numGames}</SLinkNotification>}
+                    {label == "Wallet" && wallet && <SLinkBalance>{`$${wallet.balance}`}</SLinkBalance>}
                 </SLink>
             </SLinkContainer>
             ))}
