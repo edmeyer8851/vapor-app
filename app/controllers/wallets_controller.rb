@@ -21,8 +21,7 @@ class WalletsController < ApplicationController
         wallet.update!(:balance => wallet.balance + wallet_params[:last_transaction_amount])
         render json: wallet, status: :accepted
         rescue ActiveRecord::RecordInvalid => invalid
-            errors_arr = invalid.record.errors.map{|key,value| "#{key}: #{value}"}
-            render json: { errors: errors_arr }, status: :unprocessable_entity
+            render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
     end
 
     private

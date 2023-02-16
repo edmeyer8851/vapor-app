@@ -5,7 +5,6 @@ import { PageTitle } from './LibraryPage'
 import { Container, InfoContainer, InfoLabel, InfoValue } from './ProfilePage'
 import { Divider, Wrapper } from './StorePage'
 import BackButton from './styles/BackButton'
-import styled from 'styled-components'
 import AddFundsButton from './styles/AddFundsButton'
 import AddFundsForm from './Forms/AddFundsForm'
 import LargeLogo from '../Logos/LargeLogo'
@@ -15,7 +14,7 @@ function WalletPage() {
     let navigate = useNavigate()
     const [user, setUser, wallet, setWallet] = useContext(UserContext)
 
-    const [errors, setErrors] = useState([])
+    
     const [addingFunds, setAddingFunds] = useState(false)
 
     const handleAddFundsClick = () => {
@@ -39,8 +38,8 @@ function WalletPage() {
                 </Container>
                 <Divider/>
                 <Divider/>
-                {addingFunds ? 
-                    <AddFundsForm></AddFundsForm>
+                {addingFunds ?
+                    <AddFundsForm setAddingFunds={setAddingFunds} />
                     : <AddFundsButton onClick={handleAddFundsClick} >Add Funds</AddFundsButton>}
                 </>
             }

@@ -36,27 +36,36 @@ function GameDetailPage() {
     
     const handleBuy = () => {
         if (user && !owned) {
-            fetch('/user_games', {
-                method: "POST",
-                headers: {
-                "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                user_id: user.id,
-                game_id: game.id,
-                }),
-            }).then(owned=true)
-            .then(() => {
-                fetch('/me')
-                .then(r => r.json())
-                .then(setUser)
-            })
+            if (wallet.balance >= game.price){
+                fetch('/user_games', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        user_id: user.id,
+                        game_id: game.id,
+                    })
+                }).then(() => {
+                    owned=true
+                    deductFromWallet()
+                    fetch('/me').then(r => r.json()).then(setUser)
+                })
+            } else setErrors(["You do not have enough funds in your wallet. Visit the Wallet page to add more."])
         } else {
             if (user){
                 setErrors(["You already own this game."])
             } else { setErrors(["You cannot purchase games unless you're signed in."])}
+        }
     }
-}
+
+    const deductFromWallet = () => {
+        fetch(`/wallets/${user.id}`, {
+            method: 'PATCH',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ last_transaction_amount: (game.price * -1) })
+        }).then(r => r.json()).then(setWallet)
+    }
 
     return (
         <>

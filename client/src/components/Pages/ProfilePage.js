@@ -228,7 +228,7 @@ const editStyle = {
     cursor: "pointer",
 }
 
-const Input = styled.input`
+export const Input = styled.input`
     border-radius: 0px 16px 16px 0px;
     background: rgb(50,50,50);
     padding: 8px 8px;

@@ -7,7 +7,7 @@ export const SLayout = styled.div`
 `
 
 export const SMain = styled.main`
-    /* padding: calc(${v.xxlSpacing} * 2); */
+    
     padding-left: calc(${v.xxlSpacing} * 2);
     padding-right: calc(${v.xxlSpacing} * 2)
 `
