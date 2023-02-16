@@ -1,24 +1,38 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Inspired by Steam, Vapor is a mock digital games store featuring a
+customized back end created with Ruby on Rails, a robust front end user
+interface created with React, user profiles/authentication, and features
+over 350 games. 
 
-Things you may want to cover:
+## Setup
 
-* Ruby version
+To get set up, run:
 
-* System dependencies
+```console
+$ bundle install
+$ npm install --prefix client
+```
 
-* Configuration
+This will install the necessary gems and packages. To set up the database, run:
 
-* Database creation
+```console
+$ rails db:migrate db:seed
+```
 
-* Database initialization
+Make sure the Postgre service is started by running:
 
-* How to run the test suite
+```console
+$ sudo service postgresql start
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+You can run the Rails server with:
 
-* Deployment instructions
+```console
+$ rails s
+```
 
-* ...
+Finally, open another terminal and run React with:
+```console
+$ npm start --prefix client
+```

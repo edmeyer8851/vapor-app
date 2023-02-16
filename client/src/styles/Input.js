@@ -10,6 +10,10 @@ const Input = styled.input`
   font-size: 1rem;
   line-height: 1.5;
   padding: 4px;
+
+  :focus {
+        outline: none
+    }
 `;
 
 export default Input;
