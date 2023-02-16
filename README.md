@@ -16,13 +16,8 @@ $ npm install --prefix client
 This will install the necessary gems and packages. To set up the database, run:
 
 ```console
-$ rails db:migrate db:seed
-```
-
-Make sure the Postgre service is started by running:
-
-```console
 $ sudo service postgresql start
+$ rails db:migrate db:seed
 ```
 
 You can run the Rails server with:
