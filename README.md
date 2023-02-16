@@ -2,7 +2,7 @@
 
 Inspired by Steam, Vapor is a mock digital games store featuring a
 customized back end created with Ruby on Rails, a robust front end user
-interface created with React, user profiles/authentication, and over 350 games. 
+interface created with React, user profiles/authentication, and an API fed database with over 350 games. 
 
 ## Setup
 
