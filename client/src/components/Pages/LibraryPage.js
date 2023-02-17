@@ -45,8 +45,8 @@ const SCardContainer = styled.div`
     margin-left: -300px;
     justify-content: center;
     grid-template-columns: 100px 100px 100px;
-    column-gap: 350px;
-    row-gap: 50px;
+    column-gap: 325px;
+    row-gap: 30px;
 `
 
 export const PageTitle = styled.h1`
